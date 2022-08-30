@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+// import { Redirect } from 'react-router-dom';
 import saveEmail from '../redux/actions';
 
 class Login extends React.Component {
@@ -8,7 +9,7 @@ class Login extends React.Component {
     super();
     this.loginIn = this.loginIn.bind(this);
     this.handleInput = this.handleInput.bind(this);
-    this.validateInput = this.validateInput.bind(this);
+    this.validateButton = this.validateButton.bind(this);
 
     this.state = {
       email: '',
@@ -20,13 +21,21 @@ class Login extends React.Component {
   handleInput({ target }) {
     this.setState({
       [target.name]: target.value,
-    }, () => this.validateInput());
+    }, () => this.validateButton());
   }
 
-  validateInput() {
+  // handleClick = () => {
+  //   this.setState({ disabled: true });
+  // };
+
+  validateButton() {
     const { email, password } = this.state;
-    const minLenght = 6;
-    if (email.includes('@') && email.includes('.com') && password.length >= minLenght) {
+    const minLength = 6;
+    // const validate = email.includes('@')
+    // && email.includes('.com') && password.length >= minLength;
+    // return validate;
+
+    if (email.includes('@') && email.includes('.com') && password.length >= minLength) {
       this.setState({ disabled: false });
     } else this.setState({ disabled: true });
   }
@@ -40,6 +49,9 @@ class Login extends React.Component {
 
   render() {
     const { disabled } = this.state;
+    // const { history } = this.state;
+    // if (disabled) return <Redirect to="/carteira" />;
+
     return (
       <div>
         Login
