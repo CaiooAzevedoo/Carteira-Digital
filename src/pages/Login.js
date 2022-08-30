@@ -1,9 +1,76 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import saveEmail from '../redux/actions';
 
 class Login extends React.Component {
+  constructor() {
+    super();
+    this.loginIn = this.loginIn.bind(this);
+    this.handleInput = this.handleInput.bind(this);
+    this.validateInput = this.validateInput.bind(this);
+
+    this.state = {
+      email: '',
+      password: '',
+      disabled: true,
+    };
+  }
+
+  handleInput({ target }) {
+    this.setState({
+      [target.name]: target.value,
+    }, () => this.validateInput());
+  }
+
+  validateInput() {
+    const { email } = this.state;
+    const minLenght = 6;
+    if (email.includes('@') && email.includes('.com') && password.length >= minLenght) {
+      this.setState({ disabled: false });
+    } else this.setState({ disabled: true });
+  }
+
+  loginIn() {
+    const { history, confirmedEmail } = this.props;
+    const { email } = this.state;
+    confirmedEmail(email);
+    history.push('/carteira');
+  }
+
   render() {
-    return <div>Login</div>;
+    return (
+      <div>
+        Login
+        <input
+          name="email"
+          data-testid="email-input"
+          onChange={ this.handleInput }
+        />
+        <input
+          name="password"
+          data-testid="password-input"
+          onChange={ this.handleInput }
+        />
+        <button
+          type="button"
+          onClick={ this.loginIn }
+          disabled={ disable }
+        >
+          Entrar
+        </button>
+      </div>
+    );
   }
 }
 
-export default Login;
+Login.propTypes = {
+  history: PropTypes.objectOf.isRequired,
+  confirmedEmail: PropTypes.func.isRequired,
+};
+
+const mapDispatchToProps = (dispatch) => ({
+  confirmedEmail: (email) => dispatch(saveEmail(email)),
+});
+
+export default connect(null, mapDispatchToProps)(Login);

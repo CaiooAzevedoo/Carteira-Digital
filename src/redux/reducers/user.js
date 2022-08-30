@@ -1,5 +1,11 @@
 const INITIAL_STATE = {
   email: '',
+  wallet: {
+    currencies: [],
+    expenses: [],
+    editor: false,
+    idToEdit: 0,
+  },
 };
 
 function user(state = INITIAL_STATE, action) {
