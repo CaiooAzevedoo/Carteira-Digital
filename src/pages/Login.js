@@ -24,7 +24,7 @@ class Login extends React.Component {
   }
 
   validateInput() {
-    const { email } = this.state;
+    const { email, password } = this.state;
     const minLenght = 6;
     if (email.includes('@') && email.includes('.com') && password.length >= minLenght) {
       this.setState({ disabled: false });
@@ -39,6 +39,7 @@ class Login extends React.Component {
   }
 
   render() {
+    const { disabled } = this.state;
     return (
       <div>
         Login
@@ -55,7 +56,7 @@ class Login extends React.Component {
         <button
           type="button"
           onClick={ this.loginIn }
-          disabled={ disable }
+          disabled={ disabled }
         >
           Entrar
         </button>
