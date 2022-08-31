@@ -1,5 +1,9 @@
+import { SAVE_EMAIL } from '../actions';
+
 const INITIAL_STATE = {
-  email: '',
+  user: {
+    email: '', // string que armazena o email da pessoa usuária
+  },
   wallet: {
     currencies: [],
     expenses: [],
@@ -10,7 +14,7 @@ const INITIAL_STATE = {
 
 function user(state = INITIAL_STATE, action) {
   switch (action.type) {
-  case 'SAVE_EMAIL':
+  case SAVE_EMAIL:
     return {
       ...state,
       email: action.email,
