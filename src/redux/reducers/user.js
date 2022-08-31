@@ -4,12 +4,6 @@ const INITIAL_STATE = {
   user: {
     email: '', // string que armazena o email da pessoa usuária
   },
-  wallet: {
-    currencies: [],
-    expenses: [],
-    editor: false,
-    idToEdit: 0,
-  },
 };
 
 function user(state = INITIAL_STATE, action) {
