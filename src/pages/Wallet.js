@@ -13,16 +13,13 @@ class Wallet extends React.Component {
   }
 
   render() {
-    const { total, currency } = this.state;
-    const { email } = this.props;
+    const { email, total, currency } = this.state;
     return (
       <div>
         TrybeWallet
-        <Header
-          email={ email }
-          total={ total }
-          currency={ currency }
-        />
+        <p data-testid="email-field">{email}</p>
+        <p data-testid="total-field">{total}</p>
+        <p data-testid="header-currency-field">{currency}</p>
       </div>
     );
   }
