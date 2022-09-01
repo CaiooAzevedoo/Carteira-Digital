@@ -9,5 +9,6 @@ export const saveEmail = (email) => ({
 
 export const GET_CURRENCIES = 'GET_CURRENCIES';
 export const getCurrencies = (payload) => ({
-  type: 'GET_CURRENCIES', payload,
+  type: 'GET_CURRENCIES',
+  payload,
 });
