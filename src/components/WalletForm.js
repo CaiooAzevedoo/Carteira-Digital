@@ -29,12 +29,12 @@ class WalletForm extends Component {
         <input data-testid="value-input" />
         <input data-testid="description-input" />
         <select data-testid="currency-input">
-          {currencies.map((currency) => (
+          { currencies.map((currency) => (
             <option
               key={ currency }
               value={ currency }
             >
-              {currency}
+              { currency }
 
             </option>
           ))}
@@ -63,7 +63,7 @@ class WalletForm extends Component {
 // }.isRequired;
 
 WalletForm.propTypes = {
-  currencies: PropTypes.arrayOf(PropTypes.object),
+  currencies: PropTypes.arrayOf(PropTypes.any),
 }.isRequired;
 
 const mapStateToProps = (state) => ({
