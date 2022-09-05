@@ -4,12 +4,12 @@ import { connect } from 'react-redux';
 import Header from '../components/Header';
 import WalletForm from '../components/WalletForm';
 import { fetchAPI } from '../redux/actions';
+import Table from '../components/Table';
 
 class Wallet extends React.Component {
   constructor() {
     super();
     this.state = {
-      total: 0,
       currency: 'BRL',
     };
   }
@@ -20,8 +20,8 @@ class Wallet extends React.Component {
   }
 
   render() {
-    const { total, currency } = this.state;
-    const { email } = this.props;
+    const { currency } = this.state;
+    const { email, total } = this.props;
     return (
       <div>
         TrybeWallet
@@ -31,6 +31,7 @@ class Wallet extends React.Component {
           currency={ currency }
         />
         <WalletForm />
+        <Table />
       </div>
     );
   }
@@ -39,10 +40,12 @@ class Wallet extends React.Component {
 Wallet.propTypes = {
   email: PropTypes.string.isRequired,
   getCurrencies: PropTypes.func.isRequired,
+  total: PropTypes.number.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   email: state.user.email,
+  total: state.wallet.total,
 });
 
 const mapDispatchToProps = (dispatch) => ({

@@ -3,7 +3,7 @@ export const saveEmail = (email) => ({
   type: 'SAVE_EMAIL', email });
 
 export const REQUEST_API = 'REQUEST_API';
-export const requestApi = () => ({
+export const requestAPI = () => ({
   type: 'REQUEST_API',
 });
 
@@ -15,7 +15,7 @@ export const getCurrencies = (payload) => ({
 
 export function fetchAPI() {
   return async (dispatch) => {
-    dispatch(requestApi());
+    dispatch(requestAPI());
     const response = await fetch('https://economia.awesomeapi.com.br/json/all');
     // const responseFilter = response.filter((res) => res !== 'USDT');
     const data = await response.json();

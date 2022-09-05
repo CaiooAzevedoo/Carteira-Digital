@@ -6,7 +6,9 @@ const INITIAL_STATE = {
   expenses: [], // array de objetos, com cada objeto tendo as chaves id, value, currency, method, tag, description e exchangeRates
   editor: false, // valor booleano que indica de uma despesa está sendo editada
   idToEdit: 0,
-  isLoading: false, // valor numérico que armazena o id da despesa que esta sendo editada
+  isLoading: false,
+  total: 0,
+  expenseId: 0, // valor numérico que armazena o id da despesa que esta sendo editada
 };
 
 function wallet(state = INITIAL_STATE, action) {
@@ -22,16 +24,16 @@ function wallet(state = INITIAL_STATE, action) {
       currencies: Object.keys(action.payload)
         .filter((currency) => currency !== 'USDT'),
       currenciesInfo: Object.values(action.payload),
+      exchangeRates: action.payload,
     };
   case SAVE_EXPENSES:
     return {
       ...state,
       expenses: [...state.expenses, action.expense],
-      expensesInfo: state.expensesInfo + 1,
+      expenseId: state.expenseId + 1,
       total: state.total + Number(action.expense.value)
-      * Number(state.currenciesInfo.find(
-        (ress) => ress.code === action.expense.currency,
-      ).ask),
+      * Number(state.currenciesInfo.find((curr) => curr.code === action.expense.currency)
+        .ask),
     };
   default:
     return state;
