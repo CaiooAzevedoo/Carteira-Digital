@@ -1,4 +1,4 @@
-import { GET_CURRENCIES, REQUEST_API, SAVE_EXPENSES } from '../actions/index';
+import { GET_CURRENCIES, SAVE_EXPENSES } from '../actions/index';
 
 const INITIAL_STATE = {
   email: '',
@@ -13,11 +13,11 @@ const INITIAL_STATE = {
 
 function wallet(state = INITIAL_STATE, action) {
   switch (action.type) {
-  case REQUEST_API:
-    return {
-      ...state,
-      isLoading: true,
-    };
+  // case REQUEST_API:
+  //   return {
+  //     ...state,
+  //     isLoading: true,
+  //   };
   case GET_CURRENCIES:
     return {
       ...state,

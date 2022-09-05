@@ -25,10 +25,9 @@ class WalletForm extends Component {
   }
 
   addExpense({ target }) {
-    const { getCurrencies } = this.props;
-    getCurrencies();
     const { value, description, currency, method, tag } = this.state;
-    const { selectExpense, expenseId, exchangeRates } = this.props;
+    const { getCurrencies, selectExpense, expenseId, exchangeRates } = this.props;
+    getCurrencies();
     selectExpense({
       id: expenseId,
       value,
