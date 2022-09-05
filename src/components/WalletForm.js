@@ -123,4 +123,3 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(WalletForm);
-// export default connect(mapStateToProps)(WalletForm);

@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-// import { Redirect } from 'react-router-dom';
 import { saveEmail } from '../redux/actions';
 
 class Login extends React.Component {
@@ -24,16 +23,9 @@ class Login extends React.Component {
     }, () => this.validateButton());
   }
 
-  // handleClick = () => {
-  //   this.setState({ disabled: true });
-  // };
-
   validateButton() {
     const { email, password } = this.state;
     const minLength = 6;
-    // const validate = email.includes('@')
-    // && email.includes('.com') && password.length >= minLength;
-    // return validate;
 
     if (email.includes('@') && email.includes('.com') && password.length >= minLength) {
       this.setState({ disabled: false });
@@ -49,8 +41,6 @@ class Login extends React.Component {
 
   render() {
     const { disabled } = this.state;
-    // const { history } = this.state;
-    // if (disabled) return <Redirect to="/carteira" />;
 
     return (
       <div>

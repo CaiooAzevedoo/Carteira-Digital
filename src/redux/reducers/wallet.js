@@ -2,22 +2,17 @@ import { GET_CURRENCIES, SAVE_EXPENSES } from '../actions/index';
 
 const INITIAL_STATE = {
   email: '',
-  currencies: [], // array de string
-  expenses: [], // array de objetos, com cada objeto tendo as chaves id, value, currency, method, tag, description e exchangeRates
-  editor: false, // valor booleano que indica de uma despesa está sendo editada
+  currencies: [],
+  expenses: [],
   idToEdit: 0,
   isLoading: false,
   total: 0,
-  expenseId: 0, // valor numérico que armazena o id da despesa que esta sendo editada
+  expenseId: 0,
+  exchangeRates: {},
 };
 
 function wallet(state = INITIAL_STATE, action) {
   switch (action.type) {
-  // case REQUEST_API:
-  //   return {
-  //     ...state,
-  //     isLoading: true,
-  //   };
   case GET_CURRENCIES:
     return {
       ...state,
