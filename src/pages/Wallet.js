@@ -27,7 +27,7 @@ class Wallet extends React.Component {
         TrybeWallet
         <Header
           email={ email }
-          total={ total }
+          total={ Number(total).toFixed(2) }
           currency={ currency }
         />
         <WalletForm />

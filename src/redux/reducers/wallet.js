@@ -1,4 +1,4 @@
-import { GET_CURRENCIES, REQUEST_API } from '../actions/index';
+import { GET_CURRENCIES, REQUEST_API, SAVE_EXPENSES } from '../actions/index';
 
 const INITIAL_STATE = {
   email: '',
@@ -21,6 +21,17 @@ function wallet(state = INITIAL_STATE, action) {
       ...state,
       currencies: Object.keys(action.payload)
         .filter((currency) => currency !== 'USDT'),
+      currenciesInfo: Object.values(action.payload),
+    };
+  case SAVE_EXPENSES:
+    return {
+      ...state,
+      expenses: [...state.expenses, action.expense],
+      expensesInfo: state.expensesInfo + 1,
+      total: state.total + Number(action.expense.value)
+      * Number(state.currenciesInfo.find(
+        (ress) => ress.code === action.expense.currency,
+      ).ask),
     };
   default:
     return state;

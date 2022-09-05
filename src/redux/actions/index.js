@@ -22,3 +22,9 @@ export function fetchAPI() {
     dispatch(getCurrencies(data));
   };
 }
+
+export const SAVE_EXPENSES = 'SAVE_EXPENSES';
+export const saveExpenses = (expense) => ({
+  type: 'SAVE_EXPENSES',
+  expense,
+});
