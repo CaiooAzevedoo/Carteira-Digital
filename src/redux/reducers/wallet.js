@@ -1,4 +1,4 @@
-import { GET_CURRENCIES, SAVE_EXPENSES } from '../actions/index';
+import { GET_CURRENCIES, SAVE_EXPENSES, DELETE_EXPENSE } from '../actions/index';
 
 const INITIAL_STATE = {
   email: '',
@@ -29,6 +29,14 @@ function wallet(state = INITIAL_STATE, action) {
       total: state.total + Number(action.expense.value)
       * Number(state.currenciesInfo.find((curr) => curr.code === action.expense.currency)
         .ask),
+    };
+  case DELETE_EXPENSE:
+    return {
+      ...state,
+      total: state.total - action.expense.value * action.ask,
+      expenses: state.expenses
+        .filter((e) => e !== action.expense),
+      expenseId: state.expenseId - 1,
     };
   default:
     return state;

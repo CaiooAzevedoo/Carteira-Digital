@@ -21,3 +21,10 @@ export const saveExpenses = (expense) => ({
   type: 'SAVE_EXPENSES',
   expense,
 });
+
+export const DELETE_EXPENSE = 'DELETE_EXPENSE';
+export const deleteExpenseBtn = (expense, ask) => ({
+  type: DELETE_EXPENSE,
+  expense,
+  ask,
+});

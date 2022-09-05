@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { deleteExpenseBtn } from '../redux/actions';
 
 class Table extends Component {
   render() {
-    const { expenses } = this.props;
+    const { expenses, deleteExpense } = this.props;
     return (
       <table>
         {/* https://www.infowester.com/tagsdesconhecidas2.php */}
@@ -22,11 +23,11 @@ class Table extends Component {
           </tr>
         </thead>
         <tbody>
-          { expenses.map((expense, index) => {
+          { expenses.map((expense) => {
             const currencyAbbrev = Object.values(expense.exchangeRates)
               .find((object) => object.code === expense.currency);
             return (
-              <tr key={ index }>
+              <tr key={ expense.description }>
                 <td>{ expense.description }</td>
                 <td>{ expense.tag }</td>
                 <td>{ expense.method }</td>
@@ -39,6 +40,15 @@ class Table extends Component {
 
                 </td>
                 <td>Real</td>
+                <td>
+                  <button
+                    type="button"
+                    data-testid="delete-btn"
+                    onClick={ () => { deleteExpense(expense, currencyAbbrev.ask); } }
+                  >
+                    Excluir
+                  </button>
+                </td>
               </tr>
             );
           })}
@@ -51,11 +61,16 @@ class Table extends Component {
 }
 
 Table.propTypes = {
-  expenses: PropTypes.arrayOf.isRequired,
-};
+  expenses: PropTypes.arrayOf(PropTypes.object),
+  deleteExpense: PropTypes.func,
+}.isRequired;
 
 const mapStateToProps = (state) => ({
   expenses: state.wallet.expenses,
 });
 
-export default connect(mapStateToProps)(Table);
+const mapDispatchToProps = (dispatch) => ({
+  deleteExpense: (payload) => dispatch(deleteExpenseBtn(payload)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Table);
