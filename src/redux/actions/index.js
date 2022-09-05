@@ -16,7 +16,7 @@ export const getCurrencies = (payload) => ({
 export function fetchAPI() {
   return async (dispatch) => {
     dispatch(requestApi());
-    const response = await fetch('https:economia.awesomeapi.com.br/json/all');
+    const response = await fetch('https://economia.awesomeapi.com.br/json/all');
     // const responseFilter = response.filter((res) => res !== 'USDT');
     const data = await response.json();
     dispatch(getCurrencies(data));
