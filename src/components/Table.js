@@ -70,7 +70,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  deleteExpense: (payload) => dispatch(deleteExpenseBtn(payload)),
+  deleteExpense: (expense, ask) => dispatch(deleteExpenseBtn(expense, ask)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Table);
