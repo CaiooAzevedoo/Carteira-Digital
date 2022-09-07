@@ -12,14 +12,15 @@ const INITIAL_STATE = {
 };
 
 function wallet(state = INITIAL_STATE, action) {
+  const { payload } = action;
   switch (action.type) {
   case GET_CURRENCIES:
     return {
       ...state,
-      currencies: Object.keys(action.payload)
+      currencies: Object.keys(payload)
         .filter((currency) => currency !== 'USDT'),
-      currenciesInfo: Object.values(action.payload),
-      exchangeRates: action.payload,
+      currenciesInfo: Object.values(payload),
+      exchangeRates: payload,
     };
   case SAVE_EXPENSES:
     return {
