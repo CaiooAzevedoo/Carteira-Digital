@@ -1,4 +1,5 @@
-import { GET_CURRENCIES, SAVE_EXPENSES, DELETE_EXPENSE } from '../actions/index';
+import { GET_CURRENCIES, SAVE_EXPENSES, DELETE_EXPENSE, EDIT_EXPENSES, UPDATE_EXPENSES }
+  from '../actions/index';
 
 const INITIAL_STATE = {
   email: '',
@@ -9,6 +10,7 @@ const INITIAL_STATE = {
   total: 0,
   expenseId: 0,
   exchangeRates: {},
+  editor: false,
 };
 
 function wallet(state = INITIAL_STATE, action) {
@@ -38,6 +40,17 @@ function wallet(state = INITIAL_STATE, action) {
       expenses: state.expenses
         .filter((e) => e !== action.expense),
       expenseId: state.expenseId - 1,
+    };
+  case EDIT_EXPENSES:
+    return {
+      ...state,
+      editor: !state.editor,
+      idToEdit: action.id,
+    };
+  case UPDATE_EXPENSES:
+    return {
+      ...state,
+      expenses: action.expenses,
     };
   default:
     return state;

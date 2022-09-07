@@ -28,3 +28,15 @@ export const deleteExpenseBtn = (expense, ask) => ({
   expense,
   ask,
 });
+
+export const EDIT_EXPENSES = 'EDIT_ESPENSES';
+export const editExpenseBtn = (expense) => ({
+  type: EDIT_EXPENSES,
+  expense,
+});
+
+export const UPDATE_EXPENSES = 'UPDATE_EXPENSES';
+export const updateExpenseBtn = (expense) => ({
+  type: UPDATE_EXPENSES,
+  expense,
+});

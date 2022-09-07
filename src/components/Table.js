@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { deleteExpenseBtn } from '../redux/actions';
+import { deleteExpenseBtn, editExpenseBtn } from '../redux/actions';
 
 class Table extends Component {
   render() {
-    const { expenses, deleteExpense } = this.props;
+    const { expenses, deleteExpense, editExpense, disableEdit } = this.props;
     return (
       <table>
         {/* https://www.infowester.com/tagsdesconhecidas2.php */}
@@ -43,6 +43,14 @@ class Table extends Component {
                 <td>
                   <button
                     type="button"
+                    data-testid="edit-btn"
+                    disabled={ disableEdit }
+                    onClick={ () => { editExpense(expense, currencyAbbrev.ask); } }
+                  >
+                    Editar despesa
+                  </button>
+                  <button
+                    type="button"
                     data-testid="delete-btn"
                     onClick={ () => { deleteExpense(expense, currencyAbbrev.ask); } }
                   >
@@ -63,14 +71,18 @@ class Table extends Component {
 Table.propTypes = {
   expenses: PropTypes.arrayOf(PropTypes.object),
   deleteExpense: PropTypes.func,
+  disableEdit: PropTypes.bool,
+  editExpense: PropTypes.func,
 }.isRequired;
 
 const mapStateToProps = (state) => ({
   expenses: state.wallet.expenses,
+  disableEdit: state.wallet.editor,
 });
 
 const mapDispatchToProps = (dispatch) => ({
   deleteExpense: (expense, ask) => dispatch(deleteExpenseBtn(expense, ask)),
+  editExpense: (id) => dispatch(editExpenseBtn(id)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Table);
