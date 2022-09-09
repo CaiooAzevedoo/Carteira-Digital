@@ -57,20 +57,17 @@ class WalletForm extends Component {
   }
 
   renderNormalFormal(currencies) {
-    // const { currencies } = this.props;
     return (
       <div>
         <input
           name="value"
           data-testid="value-input"
           onChange={ this.handleChange }
-          // placeholder="Valor"
         />
         <input
           name="description"
           data-testid="description-input"
           onChange={ this.handleChange }
-          // placeholder="Descrição"
         />
         <select
           name="currency"
@@ -173,19 +170,35 @@ class WalletForm extends Component {
           onChange={ this.handleChange }
           data-testid="tag-input"
         >
-          <option selected={ infoExpenses.tag === 'Alimentação' } value="Alimentação">
+          <option
+            selected={ infoExpenses.tag === 'Alimentação' }
+            value="Alimentação"
+          >
             Alimentação
           </option>
-          <option selected={ infoExpenses.tag === 'Lazer' } value="Lazer">
+          <option
+            selected={ infoExpenses.tag === 'Lazer' }
+            value="Lazer"
+          >
             Lazer
           </option>
-          <option selected={ infoExpenses.tag === 'Trabalho' } value="Trabalho">
+          <option
+            selected={ infoExpenses.tag === 'Trabalho' }
+            value="Trabalho"
+          >
             Trabalho
           </option>
-          <option selected={ infoExpenses.tag === 'Transporte' } value="Transporte">
+          <option
+            selected={ infoExpenses.tag === 'Transporte' }
+            v
+            alue="Transporte"
+          >
             Transporte
           </option>
-          <option selected={ infoExpenses.tag === 'Saúde' } value="Saúde">
+          <option
+            selected={ infoExpenses.tag === 'Saúde' }
+            value="Saúde"
+          >
             Saúde
           </option>
         </select>

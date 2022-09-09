@@ -40,3 +40,8 @@ export const UPDATE_EXPENSES = 'UPDATE_EXPENSES';
 export const updateExpenseBtn = () => ({
   type: UPDATE_EXPENSES,
 });
+
+export const ORDERING_STATE = 'ORDERING_STATE';
+export const orderingState = () => ({
+  type: ORDERING_STATE,
+});

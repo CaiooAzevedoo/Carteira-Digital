@@ -4,6 +4,21 @@ import PropTypes from 'prop-types';
 import { deleteExpenseBtn, editExpenses } from '../redux/actions';
 
 class Table extends Component {
+  // constructor() {
+  //   super();
+  //   this.ordering = this.ordering.bind(this);
+  // }
+
+  // ordering({ a, b }) {
+  //   if (a.id > b.id) {
+  //     return '1';
+  //   }
+  //   if (a.id < b.id) {
+  //     return '-1';
+  //   }
+  //   return '0';
+  // }
+
   render() {
     const { expenses, deleteExpense, editExpense, disableEdit } = this.props;
     return (
