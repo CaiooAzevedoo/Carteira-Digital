@@ -30,13 +30,13 @@ export const deleteExpenseBtn = (expense, ask) => ({
 });
 
 export const EDIT_EXPENSES = 'EDIT_ESPENSES';
-export const editExpenseBtn = (expense) => ({
+export const editExpenses = (expense, ask) => ({
   type: EDIT_EXPENSES,
   expense,
+  ask,
 });
 
 export const UPDATE_EXPENSES = 'UPDATE_EXPENSES';
-export const updateExpenseBtn = (expense) => ({
+export const updateExpenseBtn = () => ({
   type: UPDATE_EXPENSES,
-  expense,
 });

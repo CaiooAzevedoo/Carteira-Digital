@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { deleteExpenseBtn, editExpenseBtn } from '../redux/actions';
+import { deleteExpenseBtn, editExpenses } from '../redux/actions';
 
 class Table extends Component {
   render() {
@@ -23,7 +23,15 @@ class Table extends Component {
           </tr>
         </thead>
         <tbody>
-          { expenses.map((expense) => {
+          {expenses.sort((a, b) => {
+            if (a.id > b.id) {
+              return '1';
+            }
+            if (a.id < b.id) {
+              return '-1';
+            }
+            return '0';
+          }).map((expense) => {
             const currencyAbbrev = Object.values(expense.exchangeRates)
               .find((object) => object.code === expense.currency);
             return (
@@ -60,9 +68,7 @@ class Table extends Component {
               </tr>
             );
           })}
-          ;
         </tbody>
-
       </table>
     );
   }
@@ -78,11 +84,12 @@ Table.propTypes = {
 const mapStateToProps = (state) => ({
   expenses: state.wallet.expenses,
   disableEdit: state.wallet.editor,
+  editExpense: state.wallet.idToEdit,
 });
 
 const mapDispatchToProps = (dispatch) => ({
   deleteExpense: (expense, ask) => dispatch(deleteExpenseBtn(expense, ask)),
-  editExpense: (id) => dispatch(editExpenseBtn(id)),
+  editExpense: (expense, ask) => dispatch(editExpenses(expense, ask)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Table);

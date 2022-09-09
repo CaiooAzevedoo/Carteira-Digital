@@ -5,12 +5,20 @@ const INITIAL_STATE = {
   email: '',
   currencies: [],
   expenses: [],
-  idToEdit: 0,
   isLoading: false,
   total: 0,
   expenseId: 0,
   exchangeRates: {},
   editor: false,
+  infoExpenses: {
+    id: '',
+    value: '',
+    description: '',
+    currency: '',
+    method: '',
+    tag: '',
+    exchangeRates: {},
+  },
 };
 
 function wallet(state = INITIAL_STATE, action) {
@@ -45,12 +53,15 @@ function wallet(state = INITIAL_STATE, action) {
     return {
       ...state,
       editor: !state.editor,
-      idToEdit: action.id,
+      infoExpenses: action.expense,
+      expenses: state.expenses.filter((ex) => ex !== action.expense),
+      total: state.total - action.expense.value * action.ask,
+
     };
   case UPDATE_EXPENSES:
     return {
       ...state,
-      expenses: action.expenses,
+      editor: false,
     };
   default:
     return state;
