@@ -4,36 +4,20 @@ import PropTypes from 'prop-types';
 import { deleteExpenseBtn, editExpenses } from '../redux/actions';
 
 class Table extends Component {
-  // constructor() {
-  //   super();
-  //   this.ordering = this.ordering.bind(this);
-  // }
-
-  // ordering({ a, b }) {
-  //   if (a.id > b.id) {
-  //     return '1';
-  //   }
-  //   if (a.id < b.id) {
-  //     return '-1';
-  //   }
-  //   return '0';
-  // }
-
   render() {
     const { expenses, deleteExpense, editExpense, disableEdit } = this.props;
     return (
       <table>
-        {/* https://www.infowester.com/tagsdesconhecidas2.php */}
         <thead>
           <tr>
             <th>Descrição</th>
             <th>Tag</th>
             <th>Método de pagamento</th>
+            <th>Moeda de Pagamento</th>
             <th>Valor</th>
-            <th>Moeda</th>
             <th>Câmbio utilizado</th>
-            <th>Valor convertido</th>
             <th>Moeda de conversão</th>
+            <th>Valor convertido</th>
             <th>Editar/Excluir</th>
           </tr>
         </thead>

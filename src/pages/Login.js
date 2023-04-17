@@ -26,16 +26,15 @@ class Login extends React.Component {
   validateButton() {
     const { email, password } = this.state;
     const minLength = 6;
-
     if (email.includes('@') && email.includes('.com') && password.length >= minLength) {
       this.setState({ disabled: false });
     } else this.setState({ disabled: true });
   }
 
   loginIn() {
-    const { history, confirmedEmail } = this.props;
+    const { history, setEmail } = this.props;
     const { email } = this.state;
-    confirmedEmail(email);
+    setEmail(email);
     history.push('/carteira');
   }
 
@@ -46,11 +45,13 @@ class Login extends React.Component {
       <div>
         Login
         <input
+          placeholder="Email"
           name="email"
           data-testid="email-input"
           onChange={ this.handleInput }
         />
         <input
+          placeholder="Password"
           name="password"
           data-testid="password-input"
           onChange={ this.handleInput }
@@ -68,12 +69,24 @@ class Login extends React.Component {
 }
 
 Login.propTypes = {
-  history: PropTypes.objectOf.isRequired,
-  confirmedEmail: PropTypes.func.isRequired,
+  history: PropTypes.shape({
+    action: PropTypes.string,
+    block: PropTypes.func,
+    createHref: PropTypes.func,
+    go: PropTypes.func,
+    goBack: PropTypes.func,
+    goForward: PropTypes.func,
+    length: PropTypes.number,
+    listen: PropTypes.func,
+    location: PropTypes.objectOf(PropTypes.string),
+    push: PropTypes.func,
+    replace: PropTypes.func,
+  }).isRequired,
+  setEmail: PropTypes.func.isRequired,
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  confirmedEmail: (email) => dispatch(saveEmail(email)),
+  setEmail: (email) => dispatch(saveEmail(email)),
 });
 
 export default connect(null, mapDispatchToProps)(Login);

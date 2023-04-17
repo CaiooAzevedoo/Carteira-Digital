@@ -1,3 +1,4 @@
+/* eslint-disable max-lines */
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -24,9 +25,9 @@ class WalletForm extends Component {
 
   addExpense({ target }) {
     const { value, description, currency, method, tag } = this.state;
-    const { getCurrencies, selectExpense, expenseId, exchangeRates } = this.props;
+    const { getCurrencies, setExpense, expenseId, exchangeRates } = this.props;
     getCurrencies();
-    selectExpense({
+    setExpense({
       id: expenseId,
       value,
       description,
@@ -41,8 +42,8 @@ class WalletForm extends Component {
 
   editExpenses(infoExpenses, { target }) {
     const { value, description, currency, method, tag } = this.state;
-    const { selectExpense, endEdit } = this.props;
-    selectExpense({
+    const { setExpense, endEdit } = this.props;
+    setExpense({
       id: infoExpenses.id,
       value,
       description,
@@ -60,11 +61,13 @@ class WalletForm extends Component {
     return (
       <div>
         <input
+          placeholder="Valor"
           name="value"
           data-testid="value-input"
           onChange={ this.handleChange }
         />
         <input
+          placeholder="Descrição"
           name="description"
           data-testid="description-input"
           onChange={ this.handleChange }
@@ -225,7 +228,7 @@ class WalletForm extends Component {
 
 WalletForm.propTypes = {
   currencies: PropTypes.arrayOf(PropTypes.string),
-  selectExpense: PropTypes.func,
+  setExpense: PropTypes.func,
   expenseId: PropTypes.number,
   exchangeRates: PropTypes.objectOf(PropTypes.object),
   getCurrencies: PropTypes.func,
@@ -242,7 +245,7 @@ const mapStateToProps = (state) => ({
   editOpen: state.wallet.editor,
 });
 const mapDispatchToProps = (dispatch) => ({
-  selectExpense: (expense) => dispatch(saveExpenses(expense)),
+  setExpense: (expense) => dispatch(saveExpenses(expense)),
   getCurrencies: () => dispatch(fetchAPI()),
   endEdit: () => dispatch(updateExpenseBtn()),
 });

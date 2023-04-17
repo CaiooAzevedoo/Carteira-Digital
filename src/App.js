@@ -12,7 +12,6 @@ function App() {
           <Route path="/carteira" component={ Wallet } />
         </Switch>
       </BrowserRouter>
-      ;
     </div>
   );
 }
